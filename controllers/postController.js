@@ -1,6 +1,5 @@
 const Post = require("../models/Post");
 
-
 // ✅ CREATE POST (URL se)
 exports.createPost = async (req, res) => {
   try {
@@ -16,7 +15,6 @@ exports.createPost = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 // 🔥 NEW: FILE UPLOAD POST
 exports.uploadPost = async (req, res) => {
@@ -39,7 +37,6 @@ exports.uploadPost = async (req, res) => {
   }
 };
 
-
 // ✅ LIKE / UNLIKE
 exports.likePost = async (req, res) => {
   try {
@@ -56,9 +53,7 @@ exports.likePost = async (req, res) => {
     const alreadyLiked = post.likes.includes(userId);
 
     if (alreadyLiked) {
-      post.likes = post.likes.filter(
-        (id) => id.toString() !== userId
-      );
+      post.likes = post.likes.filter((id) => id.toString() !== userId);
     } else {
       post.likes.push(userId);
     }
@@ -72,7 +67,6 @@ exports.likePost = async (req, res) => {
   }
 };
 
-
 // ✅ DELETE POST (🔥 FULL SAFE VERSION)
 exports.deletePost = async (req, res) => {
   try {
@@ -84,7 +78,7 @@ exports.deletePost = async (req, res) => {
 
     // 🔥 IMPORTANT FIX (old posts ke liye)
     if (
-      post.user && 
+      post.user &&
       post.user.toString() !== req.user.id &&
       req.user.role !== "admin"
     ) {
@@ -99,7 +93,6 @@ exports.deletePost = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 // ✅ GET POSTS
 exports.getPosts = async (req, res) => {

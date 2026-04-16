@@ -19,10 +19,10 @@ const app = express();
 // 🔥 ✅ CORS FIX (IMPORTANT)
 app.use(
   cors({
-    origin: "*",   // अभी सबको allow कर रहे हैं (best for testing)
+    origin: "*", // अभी सबको allow कर रहे हैं (best for testing)
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  })
+    credentials: true,
+  }),
 );
 
 // middlewares
