@@ -16,14 +16,22 @@ connectDB();
 
 const app = express();
 
+// 🔥 ✅ CORS FIX (IMPORTANT)
+app.use(
+  cors({
+    origin: "*",   // अभी सबको allow कर रहे हैं (best for testing)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+);
+
 // middlewares
-app.use(cors());
 app.use(express.json());
 
-// 🔥 👉 YAHI ADD KARNA HAI (IMPORTANT)
+// static folder
 app.use("/uploads", express.static("uploads"));
 
-// 🔥 routes
+// routes
 app.use("/api/post", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/comments", commentRoutes);
