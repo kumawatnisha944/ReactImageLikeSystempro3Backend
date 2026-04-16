@@ -27,7 +27,7 @@ exports.uploadPost = async (req, res) => {
     }
 
     const post = await Post.create({
-      image: `http://localhost:5000/uploads/${req.file.filename}`,
+      image: req.file.filename,
       user: req.user.id,
       likes: [],
     });
